@@ -1,0 +1,18 @@
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+      - name: Download Prerequisites
+        run: sudo apt-get update && sudo apt-get install -y libhwloc15 unrar
+      - name: Check
+        run: ./ci/workflow
+
+name: Verify
+
+on:
+  schedule:
+    - cron: "40 2/3 * * *"
